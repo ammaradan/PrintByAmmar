@@ -137,7 +137,7 @@ public class UsbPrinterManager {
             return;
         }
         int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-                ? PendingIntent.FLAG_MUTABLE
+                ? PendingIntent.FLAG_IMMUTABLE
                 : PendingIntent.FLAG_UPDATE_CURRENT;
         PendingIntent permissionIntent = PendingIntent.getBroadcast(
                 context, 0, new Intent(ACTION_USB_PERMISSION), flags);
