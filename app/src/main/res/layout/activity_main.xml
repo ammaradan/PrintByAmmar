@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPaper">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorHeader"
+        android:padding="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/btn_print_background"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🖨"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="Print By Ammar"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvPrinterStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⬤ No Printer"
+            android:textColor="#aaaaaa"
+            android:textSize="11sp"
+            android:background="@drawable/status_badge_background"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+    </LinearLayout>
+
+    <!-- SCROLLABLE CONTENT -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- SECTION 1: SELECT FILE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 — SELECT FILE"
+                style="@style/SectionLabel"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Upload Zone -->
+            <LinearLayout
+                android:id="@+id/uploadZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/upload_zone_background"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📁"
+                    android:textSize="40sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:id="@+id/tvUploadTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap to choose file"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorInk"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PDF · JPG · PNG · TXT"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMuted"/>
+
+            </LinearLayout>
+
+            <!-- Selected File Card (hidden by default) -->
+            <LinearLayout
+                android:id="@+id/fileCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_background"
+                android:orientation="horizontal"
+                android:padding="14dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFileIcon"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/file_icon_background"
+                    android:gravity="center"
+                    android:text="📄"
+                    android:textSize="20sp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+
+                    <TextView
+                        android:id="@+id/tvFileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="filename.pdf"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorInk"
+                        android:ellipsize="end"
+                        android:singleLine="true"/>
+
+                    <TextView
+                        android:id="@+id/tvFileSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 KB"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorMuted"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnRemoveFile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:text="✕"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:background="@drawable/remove_btn_background"
+                    android:padding="0dp"/>
+
+            </LinearLayout>
+
+            <!-- SECTION 2: SELECT PRINTER -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 — SELECT PRINTER"
+                style="@style/SectionLabel"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_background"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Connection Type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Connection Type"
+                        style="@style/OptionLabel"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerConnection"
+                        android:layout_width="140dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/spinner_background"/>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorBorder"/>
+
+                <!-- Printer Select Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Printer"
+                            style="@style/OptionLabel"/>
+
+                        <TextView
+                            android:id="@+id/tvSelectedPrinter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="None selected"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorMuted"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnSelectPrinter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Search"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12sp"
+                        android:background="@drawable/btn_print_background"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textAllCaps="false"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- SECTION 3: PRINT OPTIONS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 — PRINT OPTIONS"
+                style="@style/SectionLabel"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_background"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Copies -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Copies"
+                        style="@style/OptionLabel"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/stepper_background">
+
+                        <Button
+                            android:id="@+id/btnDecCopies"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="−"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorInk"
+                            android:background="@android:color/transparent"
+                            android:padding="0dp"/>
+
+                        <TextView
+                            android:id="@+id/tvCopies"
+                            android:layout_width="40dp"
+                            android:layout_height="36dp"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorInk"
+                            android:background="@color/colorWhite"/>
+
+                        <Button
+                            android:id="@+id/btnIncCopies"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="+"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorInk"
+                            android:background="@android:color/transparent"
+                            android:padding="0dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorBorder"/>
+
+                <!-- Paper Size -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Paper Size"
+                        style="@style/OptionLabel"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerPaperSize"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/spinner_background"/>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorBorder"/>
+
+                <!-- Orientation -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Orientation"
+                        style="@style/OptionLabel"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerOrientation"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/spinner_background"/>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorBorder"/>
+
+                <!-- Color Mode -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Color Mode"
+                        style="@style/OptionLabel"/>
+
+                    <Switch
+                        android:id="@+id/switchColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Color"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorMuted"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- PRINT BUTTON -->
+            <Button
+                android:id="@+id/btnPrint"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="🖨  Print Now"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/btn_print_background"
+                android:textAllCaps="false"
+                android:enabled="false"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Make sure your printer is connected via USB, Wi-Fi, or Bluetooth before tapping Print Now."
+                android:textSize="12sp"
+                android:textColor="@color/colorMuted"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.4"
+                android:layout_marginBottom="24dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
+
+            <!-- CREDITS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorHeader"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/btn_print_background"
+                        android:gravity="center"
+                        android:text="AS"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ammar Sadiq"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Developer &amp; Designer"
+                            android:textColor="#888888"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="© 2025 Print By Ammar · All rights reserved"
+                    android:textColor="#555555"
+                    android:textSize="11sp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- PROGRESS BAR (shown while printing) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"/>
+
+</LinearLayout>
