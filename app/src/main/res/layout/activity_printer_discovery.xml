@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPaper">
+
+    <!-- Connection Type Selector -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:margin="16dp"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONNECTION TYPE"
+            style="@style/SectionLabel"
+            android:layout_marginBottom="12dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgConnectionType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbUsb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🔌 USB"
+                android:checked="true"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbWifi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📶 Wi-Fi"
+                android:textSize="14sp"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        android:gravity="center_vertical"
+        android:gap="12dp">
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="🔍 Search"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_print_background"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btnManualIp"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="✏ Manual IP"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/card_background"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+    <!-- Status -->
+    <ProgressBar
+        android:id="@+id/progressSearch"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvSearchStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tap Search to find printers"
+        android:textSize="12sp"
+        android:textColor="@color/colorMuted"
+        android:gravity="center"
+        android:padding="12dp"/>
+
+    <!-- Printer List -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FOUND PRINTERS"
+        style="@style/SectionLabel"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/lvPrinters"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/card_background"
+        android:margin="16dp"
+        android:divider="@color/colorBorder"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>
